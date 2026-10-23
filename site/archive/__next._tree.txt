@@ -1,4 +1,4 @@
 :HL["/_next/static/chunks/1xp3kevjcl8zg.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":{"n":"section","t":"d","k":"archive","s":["articles"]},"h":65632,"c":"$Q2"}]]
-0:{"b":"wjTh7Nxh5RvIqjkuCcJPa","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"f4poxE89PzGTYgPX1Ve9y","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
