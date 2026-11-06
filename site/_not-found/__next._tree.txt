@@ -1,4 +1,6 @@
-:HL["/_next/static/chunks/1xp3kevjcl8zg.css","style"]
+:HL["/_next/static/chunks/2d8fd5h2go3in.css","style"]
+:HL["/art/logo.svg","image"]
+:HL["/art/petty-knight-standing-v1.webp","image"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"f4poxE89PzGTYgPX1Ve9y","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"85qmwUrNUDsfmVOntrcbP","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
