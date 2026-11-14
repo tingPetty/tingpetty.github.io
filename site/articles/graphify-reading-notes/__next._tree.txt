@@ -1,0 +1,8 @@
+:HL["/_next/static/chunks/0y_f23-768sk2.css","style"]
+:HL["/art/logo.svg","image"]
+:HL["/art/petty-knight-standing-v1.webp","image"]
+:HL["/media/9407ac7f10df76e4b9a1309d82f5aeed128dd2303eeb9c32b74ff290f614e0ae.webp","image"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"slug","t":"d","k":"graphify-reading-notes","s":[]},"h":65632,"c":"$Q3"}]]
+1:[["children",{"s":"articles","h":131168,"c":"$Q2"}]]
+0:{"b":"7Xd0Qm6dHw_eCMyFy-jKG","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

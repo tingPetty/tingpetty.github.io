@@ -9,11 +9,11 @@
 a:I[96386,["$2","$3"],"MotionEffects"]
 13:"ArticleListClient"
 14:I[41977,["$2","$3"],"$13"]
-18:"ViewportBoundary"
-19:I[89911,["$2","$3"],"$18"]
-1a:"MetadataBoundary"
-1b:I[89911,["$2","$3"],"$1a"]
-1c:"$Sreact.suspense"
+1d:"ViewportBoundary"
+1e:I[89911,["$2","$3"],"$1d"]
+1f:"MetadataBoundary"
+20:I[89911,["$2","$3"],"$1f"]
+21:"$Sreact.suspense"
 :HL["/_next/static/chunks/0y_f23-768sk2.css","style"]
 :HL["/art/logo.svg","image"]
 :HL["/art/petty-knight-standing-v1.webp","image"]
@@ -23,22 +23,308 @@ f:X
 f:C
 11:[["$","source",null,{"media":"(max-width: 767px)","srcSet":"/art/petty-greenpath-bg-mobile-v1.webp"}],["$","img",null,{"src":"/art/petty-greenpath-bg-desktop-v1.webp","width":"1536","height":"1024","alt":"","fetchPriority":"high"}]]
 12:[["$","source",null,{"media":"(min-width: 768px)","srcSet":"/art/petty-greenpath-foreground-v1.webp"}],["$","img",null,{"src":"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=","width":"1536","height":"1024","alt":""}]]
-10:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"scene scene-greenpath  articles-scene","data-scene":"greenpath","children":[["$","div",null,{"className":"scene-backdrop","aria-hidden":"true","children":["$","picture",null,{"children":"$11"}]}],["$","picture",null,{"className":"scene-foreground","aria-hidden":"true","children":"$12"}],["$","$L9","greenpath-false-reading",{"scene":"greenpath","reading":false,"pose":"reading"}],["$","div",null,{"className":"scene-content","children":[["$","div",null,{"className":"site-container interior-container","children":[["$","header",null,{"className":"page-heading ","children":[["$","p",null,{"className":"scene-label","children":[["$","span",null,{"children":"苍绿之径"}],["$","span",null,{"lang":"en","children":"Greenpath"}]]}],["$","h1",null,{"children":"文章"}],["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}],["$","p",null,{"className":"page-subtitle","children":"写下走过的路，也记下没弄懂的问题。"}]]}],["$","div",null,{"className":"articles-layout","children":["$","$L14",null,{"articles":[{"title":"安利空洞骑士游戏","slug":"note-mvl5tyj7","excerpt":"","cover":"/media/e384ed5a66ecabdf2170e89efc03b39d9cc9da50d9c042e67a9aba41d47c27c6.webp","categoryId":"cat-life","tagIds":[],"id":"cmvl5tyj8000368um0i3h7aat","publishedAt":"2026-10-23T16:04:45.548Z","category":"生活","tags":[],"minutes":1}],"categories":[{"id":"cat-life","name":"生活","slug":"life"}],"tags":[],"searchIndex":[{"id":"cmvl5tyj8000368um0i3h7aat","text":"安利空洞骑士游戏  生活  魂类游戏，探索，打怪，可玩性很高，美术效果很好\n"}]}]}]]}],"$L15"]}]]}],null,"$L16"]}],"p":"$@17","v":null,"s":"$c"}}]]
+15:T124b,换个聊天窗口，ai 又忘了昨天改过什么 记忆存在外面的笔记柜里。下次开始工作，究竟先拿哪几张卡片出来？ 技术 ai 项目笔记 “这个方案昨天已经试过了。”
+
+和 ai 一起处理一个稍长的项目，这句话应该不难想象。上次为什么放弃某种做法、某个报错是怎么解决的，换一个会话，又得重新讲一遍。
+
+当然，可以自己写一份项目笔记。但每天读了什么、改了什么、试过什么，靠人手动补记录也挺费劲。
+
+claude-mem 尝试把这件事接过去：从 agent 的工作过程里留下记录，整理成较短的观察和摘要，等下次会话需要时，再取出相关内容。它现在已经提供多种 agent 的适配入口，名字里的 claude 不代表全部使用范围。[项目 readme](https://github.com/thedotmack/claude-mem#readme) 介绍了支持情况。
+
+## 记忆先存在外面
+
+这里说的“记住”，发生在模型外部。
+
+可以想象一个人每天换一张干净的办公桌，但桌边一直放着同一个笔记柜。新的一天开始，先取几张和今天任务有关的卡片，就不必全靠重新回忆。
+
+claude-mem 的基础流程也有类似分工：在工作发生时收集信息，用一个观察过程整理记录，再把结果保存下来。新会话开始时，按项目提供一份紧凑的上下文。这里的“上下文”，就是这次交给 ai 参考的材料。[官方架构说明](https://docs.claude-mem.ai/architecture/overview) 展示了这些部件的关系。
+
+这不会把一个项目的经历直接训练进模型参数。离开这套记录和读取机制，模型也不会凭空拥有同样的项目记忆。
+
+![claude-mem 分成两条路径：工作时整理并保存笔记，新会话按需检索笔记](/media/4507e78098d9544e72c51dcd75105e177a8fcf081e772434218c5153d45e342f.webp)
+
+## 笔记从哪里来
+
+项目通过 hooks 接收 agent 的事件。hook 可以理解成一个预先约定的通知点：开始会话了、调用工具了、结束了，就通知相应的处理程序。
+
+在 `src/cli/hook-command.ts` 里，能看到适配器先把不同平台的输入整理成共同格式，再交给事件处理器，最后把结果转换回平台需要的形式。[对应源码](https://github.com/thedotmack/claude-mem/blob/main/src/cli/hook-command.ts) 还专门处理了失败时怎样退出，尽量避免记笔记的环节把原本的工作卡住。
+
+后面有一个本地 worker，可以把它理解成后台值班的小服务。它接收事件、安排整理、提供搜索和上下文等接口。这个部件的入口是 [`src/services/worker-service.ts`](https://github.com/thedotmack/claude-mem/blob/main/src/services/worker-service.ts)。
+
+记录主要存进 sqlite。sqlite 是一种可以把数据库放在本地文件里的工具。项目把会话、观察记录、摘要等信息分开保存，也保留记录所属项目、发生时间等信息。[数据库文档](https://docs.claude-mem.ai/architecture/database) 可以看到具体组织方式。
+
+## 先翻目录，再抽卡片
+
+如果每次都把过去所有笔记塞给 ai，材料会越来越长。里面还可能混着几周前已经不用的方案。
+
+claude-mem 在 readme 中介绍了一条分步检索路线：先用 `search` 找到简短索引；需要了解前后经过时，再用 `timeline`；最后通过 `get_observations` 取选中的详细记录。
+
+这有点像查一本书：先看目录，翻到那一节，再决定要不要往前多读两页。先给出的信息少一些，后面仍然留着回查详情的入口。
+
+比如，假设记录里有一张卡片写着“菜单故障和某个事件处理有关”。它可以帮我们找到上次调查的位置。但真正要改代码时，仍然应该打开现在的文件，看看相关逻辑有没有被后来的修改替换掉。
+
+记忆可以提供线索，旧结论有没有过期，还得再判断。
+
+## 顺着一条笔记读源码
+
+这次阅读时，我给自己留的路线很短：
+
+`src/cli/` 接收事件 → `src/services/worker/` 处理 → `src/services/sqlite/` 保存 → `src/services/context/` 组织下次要带上的内容。
+
+每经过一处，都可以问同一个问题：“上一环节交过来的内容，在这里变成了什么？”这样比一口气研究所有配置容易跟住。
+
+对我来说，这个项目最有意思的地方是它怎样挑选信息。记下所有东西不难理解，真正影响使用体验的，往往是下次打开聊天时，究竟先拿哪几张卡片出来。
+
+***
+
+阅读记录：2026-11-14
+
+github 原始仓库：[thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
+16:T13d8,给 ai 派一件活，它接下来怎么办？ 一条留言变成工单以后，系统还得安排工作、处理等待，再把结果交回来。 技术 ai 项目笔记 假设你维护着一个小网站，有人留言：“手机上菜单打不开，能修一下吗？”
+
+把这句话交给 ai，让它写一段修复代码，已经不算稀奇。麻烦的是后半程：它要去哪个项目改？中途收到补充说明怎么办？修完了去哪里告诉你？如果卡住了，总不能一直安静地挂着。
+
+deepseek 的 `dsh-superagent-prototype` 把这些事情放到了一起。它面向一个 github 仓库接收任务，也可以接入飞书，安排 agent 工作，再回到原来的对话里交付结果。
+
+先说清楚范围：[仓库首页](https://github.com/deepseek-ai/dsh-superagent-prototype#readme) 把它标为研究原型，并说明公开代码和团队内部版本、设计文章并不完全一样。下面读的是这个公开原型。
+
+## 一条留言，先变成一张工单
+
+在这个系统里，外部消息进来后，会被记录成事件。系统根据规则判断它是否要求开始一项工作。接下来的解释，先只看“收到一个新任务”这条路径。
+
+通过判断后，系统建立一张 ticket。这个词可以直接理解成工单：这件事要做什么、为什么可以做、结果回到哪里，都需要有地方记下来。
+
+其中还有一个叫 mandate 的记录，用来保存这次工作的授权依据和范围。这里不用背英文，记住一个区别就够了：**知道有人说了什么，和获准替他做什么，是两件不同的事。** 相关定义见[任务模型文档](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/001-domain.md)。
+
+比如，评论里只是有人提到“这个按钮有点怪”，是否要自动开工，要看团队设定的规则。已经接手的任务收到后续消息，则还有继续处理的路径，并非每次都创建新工单。
+
+![新任务的简化路径：收到消息，判断是否接单，建立工单，执行，交回结果或请求帮助](/media/d1b375ad6ff555890658006da4d5942c0b428ec02981c4f05361ce9176ada58d.webp)
+
+## 工作做到哪一步，得有个说法
+
+被接下来的工单会分到自己的 agent 会话和工作目录。项目允许配置准备命令，例如用 git worktree 创建一份独立的代码工作区。[执行文档](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md) 也解释了排队、执行、等待回复、等待检查等状态。
+
+“独立目录”可以想成单独一张工作桌，便于分开放东西。它本身不等于隔离整个操作系统：文档说明，执行会话按运行者的系统身份执行命令。这一点决定了实际部署时应当给它什么环境。
+
+我更感兴趣的是等待状态。一个任务暂时没继续，可能因为还没轮到它，也可能因为它在等人补充信息。两种情况在界面上应当有不同的提示，不然使用者只能反复问“你还在吗”。
+
+做完代码之后，也可以报告“等待检查”。如果交付的是 pull request，也就是一份请求合并的代码改动，使用者还能查看修改内容，再决定怎么处理。
+
+## 源码里，谁负责接单，谁负责干活
+
+这次我先看了两个入口，再对照[架构说明](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/007-architecture.md) 往外找。
+
+* `src/app/runtime.ts` 把存储、消息来源、执行器等部件组装起来，也处理启动和关闭。可以把它看成开门营业前的准备工作。
+* `src/core/engine.ts` 集中处理核心状态变化。它再把消息接收、评估、工单、分配和回复交给内部部件。读这个文件，比较容易看出一张工单会经过哪些操作。
+* `src/sources/` 连接消息来源；`src/executor/` 接上真正执行工作的会话。这样，接收消息的代码和干活的代码就有了各自的位置。
+
+还有一个小细节：核心状态的修改集中在事务里进行，可以把事务理解成“一组相关修改一起保存”。耗时的外部工作则交给外围部件处理。这有助于避免工单只改了一半，系统就去发消息或启动任务。
+
+## 最想借鉴的是少打扰
+
+项目的[设计原则](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/000-philosophy.md) 很在意人要付出多少注意力。接到任务就连续播报十几条进度，未必比安静做完更有帮助；真正需要人决定的事，又不能埋在一堆日志里。
+
+这也给了我一个看 agent 项目的角度：除了它能生成什么，还可以看它怎样安排等待，怎样保存没做完的事情，怎样把结果交回去。
+
+以后读到“全自动干活”这类介绍，我会先去找这几个地方。它们往往决定了这个工具能不能放进日常工作里。
+
+***
+
+阅读记录：2026-11-14
+
+github 原始仓库：[deepseek-ai/dsh-superagent-prototype](https://github.com/deepseek-ai/dsh-superagent-prototype)
+17:T11dc,代码太多看不懂？先让 graphify 画张地图 文件太多时，先找一条能走通的路。看看代码里的关系怎样变成一张地图。 技术 ai 项目笔记 打开一个陌生项目，最劝退人的东西可能就是左边那列文件夹。
+
+名字都认识，点进去又像都不认识。想找一个按钮的功能，先看到页面文件，再跟到某个服务，过一会儿又跳进另一个目录。刚才为什么点到这里，已经有点忘了。
+
+graphify 处理的就是这类问题。它把代码里的对象和它们之间的关系整理成一张图，让人或 ai 可以沿着关系查下去。这里的“知识图谱”，先理解成一张带说明的关系地图就够了。[项目介绍](https://github.com/graphify-labs/graphify#readme) 还列出了文档、配置等输入类型。
+
+## 地图上的线，到底代表什么
+
+拿一个虚构的待办软件举例。点一下“完成”，页面会调用处理函数，处理函数再去保存任务。
+
+![待办软件的示意关系：完成按钮经过处理函数保存任务，最后更新列表](/media/53ee9c891441cfbc2747497983879a50bceb979b10965e971477b835b878974a.webp)
+
+这张小图是为解释概念画的，不是对我的 todolist 项目运行 graphify 后得到的结果。
+
+如果图中每个节点都能定位到文件，连线又能说明“谁调用谁”，那我们就多了一条查找路线。想知道保存任务会影响哪里，可以沿着相关关系往回看，不必靠记忆逐个翻文件。
+
+但线不能随便连。两个文件名字相似，并不足以证明它们在运行时有联系。
+
+## 它先拆代码，再组图
+
+graphify 有一层 python 实现。负责结构提取的代码会使用 tree-sitter 解析源文件。这个工具做的事情，有点像给句子划分主语、谓语：它先认出程序里的函数、调用、导入等结构，再让后续代码从这些结构里提取关系。[提取入口在 `graphify/extract.py`](https://github.com/graphify-labs/graphify/blob/v8/graphify/extract.py)。
+
+拆出来的结果主要分成两部分：节点，以及节点之间的连线。接着，`build.py` 把它们组装成图，后面还可以做分组、分析和导出。
+
+第一次读源码，我会按这个顺序走：
+
+| 文件                      | 它负责的工作        |
+| ----------------------- | ------------- |
+| `detect.py`             | 看一遍目录，整理有哪些文件 |
+| `extract.py`            | 从文件里提取结构和关系   |
+| `build.py`              | 把节点、连线组装起来    |
+| `cluster.py`            | 将联系较密切的节点分组   |
+| `report.py`、`export.py` | 输出报告和图数据等结果   |
+
+这条路线来自仓库的[架构说明](https://github.com/graphify-labs/graphify/blob/v8/architecture.md)。实际代码已经包含不少语言适配和细节处理，不必为了理解主流程，一开始就跟进每种语言的规则。
+
+代码结构可以用规则提取；文档等材料还可以经过可选的语义分析。两种来源的结果，后续需要一起整理。`build.py` 里就能看到对来源、节点身份和重复数据的处理。[这里可以看组图代码](https://github.com/graphify-labs/graphify/blob/v8/graphify/build.py)。
+
+## 我喜欢它把“不确定”也写出来
+
+架构文档里有三种关系标记，意思分别是：直接提取出来的、有依据的推测、仍然不明确的。
+
+这个区别很有用。程序运行时可能根据条件选择不同函数，也可能临时加载别的模块。光读文件，不一定能把实际执行路线完全确定下来。图画得再漂亮，也不能自动补上这些缺失的信息。
+
+比如，地图上标了一条小路。它是实地测过的，还是根据两栋建筑的位置猜出来的，走之前最好知道。读代码关系图也是这样：对于推测出来的边，还需要回到源文件或运行结果里确认。
+
+## 我会用它回答哪种问题
+
+比起让 ai “把整个项目讲一遍”，我更愿意先问：“保存任务这个操作，会经过哪些地方？”
+
+问题小一点，图里的路线就有了用途，也更容易逐处核对。等这条路线看明白，再看登录、搜索或其他功能。
+
+graphify 值得我继续读的地方，就在这张地图是怎么一步步画出来的。阅读一个大仓库时，能先找到下一处值得看的文件，已经省下不少绕路的时间。
+
+***
+
+阅读记录：2026-11-14
+
+github 原始仓库：[graphify-labs/graphify](https://github.com/graphify-labs/graphify)
+18:T11eb,用网页做一段视频，hyperframes 怎么办到的？ 网页不只可以在浏览器里看。让它停在指定的一刻，再把画面逐帧取出来。 技术 ai 项目笔记 如果要给一个小作品做十秒钟的介绍，你会怎么开始？
+
+第一屏放名字，接着展示两个功能，最后留一个地址。画面不复杂，但打开视频编辑器后，还是要处理文字、位置、转场和时间轴。
+
+hyperframes 提供了另一条制作路线：先把画面写成网页，再输出视频。[项目说明](https://github.com/heygen-com/hyperframes#readme) 把 html、css、媒体素材和可定位时间的动画作为输入。html 负责放内容，css 决定样子，动画安排它们何时出现、怎样移动。
+
+ai 编程工具可以帮忙写这些文件，hyperframes 则把编排好的画面渲染出来。这样，想改标题里的一个字，就有了一个具体的位置可以改。
+
+## 最关键的是能停在指定的一刻
+
+网页能动，为什么还需要一个专门的项目把它变成视频？
+
+因为制作视频时，需要知道每一帧该长什么样。
+
+假设视频每秒 30 帧，一段 10 秒的画面就有 300 帧。第 0 帧看 0 秒时的状态，第 1 帧看大约 0.033 秒时的状态，后面依次继续。这只是方便理解的帧数例子。
+
+如果动画只能从头播放，然后靠等待时间截图，机器偶尔卡一下，截图就可能错过原本想要的时刻。更方便的办法是能直接告诉画面：“现在显示第 3 秒。”
+
+hyperframes 的渲染引擎围绕这种 seek 能力工作。seek 可以理解成拖动播放器进度条，直接去指定时间。符合约定的网页把这种能力暴露出来，引擎就能逐帧定位和捕获。[引擎说明](https://github.com/heygen-com/hyperframes/blob/main/packages/engine/readme.md) 介绍了这个过程。
+
+## 帧是怎样变成文件的
+
+引擎用 puppeteer 驱动 chrome。puppeteer 是控制浏览器的程序工具；浏览器在后台把网页画出来，不需要人在屏幕前逐次点击。
+
+拿到画面之后，ffmpeg 负责视频编码等工作。可以把它理解成处理音视频的工具箱。更上层的 producer 把捕获、编码、音频混合组织成一条完整流程。[producer 的说明](https://github.com/heygen-com/hyperframes/blob/main/packages/producer/readme.md) 提供了这一层的接口。
+
+![hyperframes 的制作路径：编排网页画面，定位时间，捕获帧，再编码并混合音频](/media/543768e33e9ab23451b9f5f5f075cc46c72e086ebd6ba94508dad04d34c4b5f3.webp)
+
+这张图只画主干。真实项目还需要处理字体、素材加载、视频片段、失败清理等情况。顺着 [`framecapture.ts`](https://github.com/heygen-com/hyperframes/blob/main/packages/engine/src/services/framecapture.ts) 的导入和捕获逻辑看，就能发现这些工作并没有因为“用网页写”而消失。
+
+## 仓库像一套分开放的工具
+
+hyperframes 把主要功能放在 `packages/` 下面，初看可以先认这几个名字：
+
+| 包                 | 大致用途                   |
+| ----------------- | ---------------------- |
+| `core`            | 共用的定义、解析、运行时和动画适配等基础能力 |
+| `engine`          | 控制浏览器，定位时间并取得画面        |
+| `producer`        | 安排完整的渲染任务，把各个步骤串起来     |
+| `cli`             | 提供创建、预览、检查和渲染等命令       |
+| `studio`、`player` | 分别提供编辑界面和可嵌入的播放器       |
+
+如果只想知道“文件怎么变视频”，先看 `engine` 和 `producer` 就够了。界面如何编辑画面，可以留到下一轮。完整包清单在[仓库 packages 一节](https://github.com/heygen-com/hyperframes#packages)。
+
+## 一个适合拿来练手的题目
+
+我会先选十秒钟的小作品介绍。名字淡入，一张截图出现，两个功能依次标亮，最后显示地址。先让这一小段能稳定生成，再考虑更复杂的视觉效果。
+
+它尤其吸引我的地方，是修改的位置很明确：哪一屏的哪句话、哪个元素在几秒出现，都能在文件里找到。这给 ai 反复修改也提供了比较具体的反馈。
+
+不过，渲染流程可靠，不代表内容自然就好看。镜头停多久、文字有多长、配色是不是合适，仍然要看成片。网页写得出来，只是让这类修改多了一种容易下手的方式。
+
+***
+
+阅读记录：2026-11-14
+
+github 原始仓库：[heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
+19:T13df,rea 是怎么拆开一个软件的？ 没有源码，ai 凭什么知道软件内部发生了什么？从工具、请求和证据看起。 技术 ai 项目笔记 软件用久了，偶尔会冒出一个念头：这个功能到底是怎么做的？
+
+比如，一款老游戏里，小球往屏幕左边跑，声音也跟着偏到左耳。效果不复杂，可要是没有源码，从哪里找出负责这件事的那几行程序？
+
+rea 想帮人缩短这段摸索的路。它的全名是 reverse engineer anything，中文经常被叫作“逆向一切”。名字挺大，我读这个项目时更关心一个小问题：**ai 到底凭什么知道软件内部发生了什么？**
+
+## 先给 ai 一套能用的工具
+
+一段程序交给计算机执行之前，可能会被编译、压缩、打包。原来清楚的函数名字和注释，有些已经丢了。逆向分析就是从留下来的东西出发，试着还原程序的结构和行为。
+
+这里有个容易误会的地方：反编译出来的代码，通常是帮助人理解逻辑的近似表达。原作者的注释、命名习惯，以及当时为什么这样写，并不会一起回来。
+
+rea 接入了 ghidra、hopper、ida 等已有的分析工具。这些工具负责查看程序里的函数、字符串和调用关系。ai 根据拿到的结果继续提问：这个函数被谁调用？某段文字从哪里出现？相关的计算又发生在哪一处？javascript、electron 等目标还有各自的分析路径。[项目 readme](https://github.com/morluto/rea#readme) 对这些能力做了区分。
+
+可以把这个过程想成检查一台老收音机：分析工具负责测量，ai 负责安排接下来查哪里。每测一次，才多知道一点。
+
+两边通过 mcp 接起来。这个缩写在这里先不用深究，可以把它理解成一套约定好的工具接口：ai 按规定发出请求，rea 返回规定格式的结果。
+
+![rea 分析过程：提出问题，调用分析工具，返回证据，再决定是否继续调查](/media/0e8c2be04e185326b64862767e67c3cd53d09eb2f90888559c5e237dc2c2869c.webp)
+
+图中省略了不同软件格式的具体处理，只保留“提问—取证—再提问”这条主线。
+
+## 结果里为什么还要留一份证据
+
+读 rea 的接口说明时，我比较在意它如何保存结果。
+
+它会为分析结果保留证据记录，记录里有整理后的结果、证据标识，以及存在时的工具原始输出。后续分析可以引用之前的记录。大结果也可以先读摘要，再按需取详情。[mcp 接口说明](https://github.com/morluto/rea/blob/main/docs/reference/mcp-contracts.md) 写了这些字段怎样传递。
+
+这件事有点像做阅读笔记时记下页码。只写“作者认为这样更快”，过两天就很难回头核对；记下出处，就能检查自己有没有理解偏。
+
+放到逆向分析里也是一样。ai 说“这里似乎在调整音量”，最好能指回某个函数或某次分析结果。否则，一段听起来完整的解释，很可能只是把几个零散线索串得太顺了。
+
+## 打开仓库后，可以先看这几处
+
+这个项目已经不小，第一次读没必要把所有目录都翻完。我会先沿着一条请求经过的地方看。
+
+| 位置                                    | 先把它理解成什么                            |
+| ------------------------------------- | ----------------------------------- |
+| `scripts/rea.mjs`                     | 分路口：判断这次运行的是命令行任务，还是给 ai 使用的 mcp 服务 |
+| `src/cli/`、`src/server/`              | 两种入口，把外面的请求转成内部能处理的操作               |
+| `src/application/`                    | 组织一次分析要做的事情，供不同入口复用                 |
+| `src/ghidra/`、`src/hopper/`、`bridge/` | 接上具体分析工具的地方                         |
+
+上面是阅读路线，不是完整目录清单。入口脚本里的分支能直接看到两种运行方式；更细的模块关系可以对照仓库自带的[架构图](https://github.com/morluto/rea/blob/main/docs/architecture/architecture.mermaid)。
+
+我觉得这套拆法值得学：外部工具各有各的脾气，先把差异放在连接处处理，上层就不用每次都从头适应。
+
+## 先追一个小功能
+
+rea 的官方案例里，有一个就是分析老游戏 dx-ball 的声道计算。它从声音相关调用追到具体逻辑，再把重建的实现拿去比较。这个案例来自项目维护者，不是我这次亲手复现的结果。[案例入口在这里](https://github.com/morluto/rea#showcases)。
+
+如果以后实际试用，我也会从这样的窄问题开始：找一段计算，说明输入是什么、输出是什么，再用几个例子验证。
+
+“把整个软件还原出来”太容易让人忽略细节。先把一个小地方解释清楚，就已经能学到很多。尤其是发现证据还不够时，知道下一步该去查什么。
+
+***
+
+阅读记录：2026-11-14
+
+github 原始仓库：[morluto/rea](https://github.com/morluto/rea)
+10:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"scene scene-greenpath  articles-scene","data-scene":"greenpath","children":[["$","div",null,{"className":"scene-backdrop","aria-hidden":"true","children":["$","picture",null,{"children":"$11"}]}],["$","picture",null,{"className":"scene-foreground","aria-hidden":"true","children":"$12"}],["$","$L9","greenpath-false-reading",{"scene":"greenpath","reading":false,"pose":"reading"}],["$","div",null,{"className":"scene-content","children":[["$","div",null,{"className":"site-container interior-container","children":[["$","header",null,{"className":"page-heading ","children":[["$","p",null,{"className":"scene-label","children":[["$","span",null,{"children":"苍绿之径"}],["$","span",null,{"lang":"en","children":"Greenpath"}]]}],["$","h1",null,{"children":"文章"}],["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}],["$","p",null,{"className":"page-subtitle","children":"写下走过的路，也记下没弄懂的问题。"}]]}],["$","div",null,{"className":"articles-layout","children":["$","$L14",null,{"articles":[{"title":"换个聊天窗口，AI 又忘了昨天改过什么\r","slug":"claude-mem-reading-notes","excerpt":"记忆存在外面的笔记柜里。下次开始工作，究竟先拿哪几张卡片出来？","cover":"/media/7e17bc1038b367bddd1e27839ff5efb06c0979c4777f021e215eba3e0da50416.webp","categoryId":"cat-code","tagIds":["tag-ai-project-notes"],"id":"ainotes-claude-mem","publishedAt":"2026-11-14T14:16:50.031Z","category":"技术","tags":["AI 项目笔记"],"minutes":4},{"title":"给 AI 派一件活，它接下来怎么办？\r","slug":"deepseek-superagent-reading-notes","excerpt":"一条留言变成工单以后，系统还得安排工作、处理等待，再把结果交回来。","cover":"/media/b2bf74b3542ee3620f8de1119d5d0a4a0cc5f7020a5009bf12341155aa5f1c7b.webp","categoryId":"cat-code","tagIds":["tag-ai-project-notes"],"id":"ainotes-deepseek-superagent","publishedAt":"2026-11-14T14:16:50.031Z","category":"技术","tags":["AI 项目笔记"],"minutes":4},{"title":"代码太多看不懂？先让 Graphify 画张地图\r","slug":"graphify-reading-notes","excerpt":"文件太多时，先找一条能走通的路。看看代码里的关系怎样变成一张地图。","cover":"/media/9407ac7f10df76e4b9a1309d82f5aeed128dd2303eeb9c32b74ff290f614e0ae.webp","categoryId":"cat-code","tagIds":["tag-ai-project-notes"],"id":"ainotes-graphify","publishedAt":"2026-11-14T14:16:50.031Z","category":"技术","tags":["AI 项目笔记"],"minutes":4},{"title":"用网页做一段视频，HyperFrames 怎么办到的？\r","slug":"hyperframes-reading-notes","excerpt":"网页不只可以在浏览器里看。让它停在指定的一刻，再把画面逐帧取出来。","cover":"/media/30a9c3c684deddff04ba31542a5f880fbb167dd2259c0a80ad5762d1a5dfd89d.webp","categoryId":"cat-code","tagIds":["tag-ai-project-notes"],"id":"ainotes-hyperframes","publishedAt":"2026-11-14T14:16:50.031Z","category":"技术","tags":["AI 项目笔记"],"minutes":3},{"title":"REA 是怎么拆开一个软件的？\r","slug":"rea-reading-notes","excerpt":"没有源码，AI 凭什么知道软件内部发生了什么？从工具、请求和证据看起。","cover":"/media/629262547becd0ade1643f1c620249cecc467d99460823f2cc73f91272a36133.webp","categoryId":"cat-code","tagIds":["tag-ai-project-notes"],"id":"ainotes-rea","publishedAt":"2026-11-14T14:16:50.031Z","category":"技术","tags":["AI 项目笔记"],"minutes":4},{"title":"安利空洞骑士游戏","slug":"note-mvl5tyj7","excerpt":"","cover":"/media/e384ed5a66ecabdf2170e89efc03b39d9cc9da50d9c042e67a9aba41d47c27c6.webp","categoryId":"cat-life","tagIds":[],"id":"cmvl5tyj8000368um0i3h7aat","publishedAt":"2026-10-23T16:04:45.548Z","category":"生活","tags":[],"minutes":1}],"categories":[{"id":"cat-code","name":"技术","slug":"code"},{"id":"cat-life","name":"生活","slug":"life"}],"tags":[{"id":"tag-ai-project-notes","name":"AI 项目笔记","slug":"ai-project-notes"}],"searchIndex":[{"id":"ainotes-claude-mem","text":"$15"},{"id":"ainotes-deepseek-superagent","text":"$16"},{"id":"ainotes-graphify","text":"$17"},{"id":"ainotes-hyperframes","text":"$18"},{"id":"ainotes-rea","text":"$19"},{"id":"cmvl5tyj8000368um0i3h7aat","text":"安利空洞骑士游戏  生活  魂类游戏，探索，打怪，可玩性很高，美术效果很好\n"}]}]}]]}],"$L1a"]}]]}],null,"$L1b"]}],"p":"$@1c","v":null,"s":"$c"}}]]
 d:[["children",{"s":{"n":"section","t":"d","k":"articles","s":["articles"]},"h":65632,"d":{"r":["$","$1","c",{"children":[null,["$","$L6",null,{"parallelRouterKey":"children","template":["$","$L7",null,{}]}]]}],"p":"$@e","v":"$f","s":"$c"},"c":"$Q10"}]]
-0:{"t":{"t":{"s":"","h":131152,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0y_f23-768sk2.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/189tfu-8qp441.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/23w79kpcrhqfn.js","async":true}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"children":["$","div",null,{"className":"public-site","children":[["$","a",null,{"className":"skip-link","href":"#main","children":"跳到主要内容"}],["$","header",null,{"className":"site-header","children":[["$","div",null,{"className":"header-inner","children":[["$","$L4",null,{"className":"site-brand","href":"/","aria-label":"Petty骑士历险记，首页","children":[["$","img",null,{"src":"/art/logo.svg","width":"44","height":"44","alt":""}],["$","span",null,{"children":"Petty骑士历险记"}]]}],["$","$L5",null,{}]]}],["$","div",null,{"className":"header-ornament","children":["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}]}]]}],["$","main",null,{"id":"main","tabIndex":-1,"children":["$","$L6",null,{"parallelRouterKey":"children","template":["$","$L7",null,{}],"notFound":[["$","div",null,{"className":"scene scene-city scene-reading not-found-scene","data-scene":"city","children":[["$","div",null,{"className":"scene-backdrop","aria-hidden":"true","children":["$","picture",null,{"children":"$8"}]}],false,["$","$L9","city-true-undefined",{"scene":"city","reading":true}],["$","div",null,{"className":"scene-content","children":["$","section",null,{"className":"site-container not-found","children":[["$","img",null,{"className":"knight knight-standing ","src":"/art/petty-knight-standing-v1.webp","width":480,"height":536,"alt":"","aria-hidden":"true"}],["$","p",null,{"className":"error-number","children":"404"}],["$","h1",null,{"children":"这条小径还没有故事"}],["$","p",null,{"children":["页面可能已搬走，或地址有误。",["$","br",null,{}],"沿着路标，回到熟悉的地方吧。"]}],["$","div",null,{"className":"hero-actions","children":[["$","$L4",null,{"className":"journey-link","href":"/","children":"回到首页"}],["$","$L4",null,{"className":"quiet-link","href":"/articles/","children":"去看文章"}]]}]]}]}]]}],[]]}]}],["$","footer",null,{"className":"site-footer","children":[["$","div",null,{"className":"footer-rule","children":["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}]}],["$","p",null,{"children":["Petty骑士历险记",["$","span",null,{"className":"footer-motto","children":"慢慢记录，继续前行"}]]}],["$","nav",null,{"aria-label":"页脚导航","children":[["$","$L4",null,{"href":"/projects/","children":"作品"}],["$","$L4",null,{"href":"/articles/","children":"全部文章"}],["$","$L4",null,{"href":"/about/","children":"关于我"}],["$","$La",null,{}],false]}]]}]]}]}]}]]}],"p":"$@b","v":null,"s":"$c"},"c":"$Qd"},"h":{"r":["$","$1","h",{"children":[null,["$","$L19",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L1b",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$1c",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"文章手记 · Petty骑士历险记"}],["$","meta","1",{"name":"description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","link","3",{"rel":"canonical","href":"https://tingpetty.github.io/articles/"}],["$","meta","4",{"property":"og:title","content":"文章手记 · Petty骑士历险记"}],["$","meta","5",{"property":"og:description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","6",{"property":"og:url","content":"https://tingpetty.github.io/articles/"}],["$","meta","7",{"property":"og:site_name","content":"Petty骑士历险记"}],["$","meta","8",{"property":"og:locale","content":"zh_CN"}],["$","meta","9",{"property":"og:image","content":"https://tingpetty.github.io/art/petty-og-v1.png"}],["$","meta","10",{"property":"og:image:alt","content":"文章手记"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:title","content":"文章手记 · Petty骑士历险记"}],["$","meta","14",{"name":"twitter:description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","15",{"name":"twitter:image","content":"https://tingpetty.github.io/art/petty-og-v1.png"}],["$","link","16",{"rel":"icon","href":"/art/logo.svg"}],"$L1d","$L1e"]}]}],null]}],null]}],"p":"$@1f","v":null,"s":"$c"}},"a":"$@20","u":"$@21","b":"a7lpbLDRLQ4g8us2USBJU"}
-22:I[89911,["$2","$3"],"OutletBoundary"]
-24:I[36541,["$2","$3"],"IconMark"]
+0:{"t":{"t":{"s":"","h":131152,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0y_f23-768sk2.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/189tfu-8qp441.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/23w79kpcrhqfn.js","async":true}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"children":["$","div",null,{"className":"public-site","children":[["$","a",null,{"className":"skip-link","href":"#main","children":"跳到主要内容"}],["$","header",null,{"className":"site-header","children":[["$","div",null,{"className":"header-inner","children":[["$","$L4",null,{"className":"site-brand","href":"/","aria-label":"Petty骑士历险记，首页","children":[["$","img",null,{"src":"/art/logo.svg","width":"44","height":"44","alt":""}],["$","span",null,{"children":"Petty骑士历险记"}]]}],["$","$L5",null,{}]]}],["$","div",null,{"className":"header-ornament","children":["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}]}]]}],["$","main",null,{"id":"main","tabIndex":-1,"children":["$","$L6",null,{"parallelRouterKey":"children","template":["$","$L7",null,{}],"notFound":[["$","div",null,{"className":"scene scene-city scene-reading not-found-scene","data-scene":"city","children":[["$","div",null,{"className":"scene-backdrop","aria-hidden":"true","children":["$","picture",null,{"children":"$8"}]}],false,["$","$L9","city-true-undefined",{"scene":"city","reading":true}],["$","div",null,{"className":"scene-content","children":["$","section",null,{"className":"site-container not-found","children":[["$","img",null,{"className":"knight knight-standing ","src":"/art/petty-knight-standing-v1.webp","width":480,"height":536,"alt":"","aria-hidden":"true"}],["$","p",null,{"className":"error-number","children":"404"}],["$","h1",null,{"children":"这条小径还没有故事"}],["$","p",null,{"children":["页面可能已搬走，或地址有误。",["$","br",null,{}],"沿着路标，回到熟悉的地方吧。"]}],["$","div",null,{"className":"hero-actions","children":[["$","$L4",null,{"className":"journey-link","href":"/","children":"回到首页"}],["$","$L4",null,{"className":"quiet-link","href":"/articles/","children":"去看文章"}]]}]]}]}]]}],[]]}]}],["$","footer",null,{"className":"site-footer","children":[["$","div",null,{"className":"footer-rule","children":["$","svg",null,{"className":"ornament","width":"76","height":"22","viewBox":"0 0 76 22","fill":"none","aria-hidden":"true","children":[["$","path",null,{"d":"M0 11h21m34 0h21","stroke":"currentColor","opacity":".55"}],["$","path",null,{"d":"M38 1c7 7 0 18 0 18s-7-11 0-18Zm-6 14C22 14 22 5 22 5s10 0 10 10Zm12 0C54 14 54 5 54 5s-10 0-10 10Z","fill":"currentColor"}]]}]}],["$","p",null,{"children":["Petty骑士历险记",["$","span",null,{"className":"footer-motto","children":"慢慢记录，继续前行"}]]}],["$","nav",null,{"aria-label":"页脚导航","children":[["$","$L4",null,{"href":"/projects/","children":"作品"}],["$","$L4",null,{"href":"/articles/","children":"全部文章"}],["$","$L4",null,{"href":"/about/","children":"关于我"}],["$","$La",null,{}],false]}]]}]]}]}]}]]}],"p":"$@b","v":null,"s":"$c"},"c":"$Qd"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1e",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L20",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$21",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"文章手记 · Petty骑士历险记"}],["$","meta","1",{"name":"description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","link","3",{"rel":"canonical","href":"https://tingpetty.github.io/articles/"}],["$","meta","4",{"property":"og:title","content":"文章手记 · Petty骑士历险记"}],["$","meta","5",{"property":"og:description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","6",{"property":"og:url","content":"https://tingpetty.github.io/articles/"}],["$","meta","7",{"property":"og:site_name","content":"Petty骑士历险记"}],["$","meta","8",{"property":"og:locale","content":"zh_CN"}],["$","meta","9",{"property":"og:image","content":"https://tingpetty.github.io/art/petty-og-v1.png"}],["$","meta","10",{"property":"og:image:alt","content":"文章手记"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:title","content":"文章手记 · Petty骑士历险记"}],["$","meta","14",{"name":"twitter:description","content":"写代码，也玩空洞骑士。这里放我的项目和记录。"}],["$","meta","15",{"name":"twitter:image","content":"https://tingpetty.github.io/art/petty-og-v1.png"}],["$","link","16",{"rel":"icon","href":"/art/logo.svg"}],"$L22","$L23"]}]}],null]}],null]}],"p":"$@24","v":null,"s":"$c"}},"a":"$@25","u":"$@26","b":"7Xd0Qm6dHw_eCMyFy-jKG"}
+27:I[89911,["$2","$3"],"OutletBoundary"]
+29:I[36541,["$2","$3"],"IconMark"]
 :HL["/art/petty-knight-reading-v1.webp","image"]
-15:["$","img",null,{"className":"knight knight-reading articles-knight","src":"/art/petty-knight-reading-v1.webp","width":480,"height":594,"alt":"","aria-hidden":"true"}]
-16:["$","$L22",null,{"children":["$","$1c",null,{"name":"Next.MetadataOutlet","children":"$@23"}]}]
-1d:["$","link","17",{"rel":"apple-touch-icon","href":"/art/petty-apple-v1.png"}]
-1e:["$","$L24","18",{}]
+1a:["$","img",null,{"className":"knight knight-reading articles-knight","src":"/art/petty-knight-reading-v1.webp","width":480,"height":594,"alt":"","aria-hidden":"true"}]
+1b:["$","$L27",null,{"children":["$","$21",null,{"name":"Next.MetadataOutlet","children":"$@28"}]}]
+22:["$","link","17",{"rel":"apple-touch-icon","href":"/art/petty-apple-v1.png"}]
+23:["$","$L29","18",{}]
 c:300
-23:null
-21:true
+28:null
+26:true
 c:C
-20:0
+25:0
 e:"$undefined"
 b:"$undefined"
-1f:"$undefined"
-17:"$undefined"
+24:"$undefined"
+1c:"$undefined"
