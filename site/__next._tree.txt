@@ -1,5 +1,5 @@
-:HL["/_next/static/chunks/40704ni36ox9e.css","style"]
+:HL["/_next/static/chunks/0y_f23-768sk2.css","style"]
 :HL["/art/logo.svg","image"]
 :HL["/art/petty-knight-standing-v1.webp","image"]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"HY99GFcCWvoSTYmJzGlnW","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"a7lpbLDRLQ4g8us2USBJU","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
