@@ -1,6 +1,7 @@
-:HL["/_next/static/chunks/2d8fd5h2go3in.css","style"]
+:HL["/_next/static/chunks/40704ni36ox9e.css","style"]
 :HL["/art/logo.svg","image"]
 :HL["/art/petty-knight-standing-v1.webp","image"]
+:HL["/art/code-card-800-v1.webp","image",{"imageSrcSet":"/art/code-card-480-v1.webp 480w, /art/code-card-800-v1.webp 800w, /art/code-card-1200-v1.webp 1200w","imageSizes":"(min-width: 1680px) 622px, (max-width: 360px) calc(100vw - 34px), (max-width: 767px) calc(100vw - 42px), (max-width: 1150px) calc(50vw - 53px), (max-width: 1312px) calc(50vw - 73px), 582px","fetchPriority":"high"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":{"n":"section","t":"d","k":"projects","s":["articles"]},"h":65632,"c":"$Q2"}]]
-0:{"b":"85qmwUrNUDsfmVOntrcbP","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"FCN9TT97oQsDbmjL3bJFp","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
