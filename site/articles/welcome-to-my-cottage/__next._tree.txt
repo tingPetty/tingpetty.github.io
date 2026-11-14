@@ -1,8 +1,0 @@
-:HL["/_next/static/chunks/40704ni36ox9e.css","style"]
-:HL["/art/logo.svg","image"]
-:HL["/art/petty-knight-standing-v1.webp","image"]
-:HL["/art/desk.png","image"]
-3:[["children",{"s":"__PAGE__","h":160}]]
-2:[["children",{"s":{"n":"slug","t":"d","k":"welcome-to-my-cottage","s":[]},"h":65632,"c":"$Q3"}]]
-1:[["children",{"s":"articles","h":131168,"c":"$Q2"}]]
-0:{"b":"FCN9TT97oQsDbmjL3bJFp","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

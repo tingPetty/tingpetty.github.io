@@ -1,8 +1,0 @@
-:HL["/_next/static/chunks/40704ni36ox9e.css","style"]
-:HL["/art/logo.svg","image"]
-:HL["/art/petty-knight-standing-v1.webp","image"]
-:HL["/media/69f32ff1639a9b3bc93c0d1a3663eb19f9b5dbb66b831ca6cf24dffefed3add0.webp","image"]
-3:[["children",{"s":"__PAGE__","h":160}]]
-2:[["children",{"s":{"n":"slug","t":"d","k":"from-cottage-to-the-web","s":[]},"h":65632,"c":"$Q3"}]]
-1:[["children",{"s":"articles","h":131168,"c":"$Q2"}]]
-0:{"b":"FCN9TT97oQsDbmjL3bJFp","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
