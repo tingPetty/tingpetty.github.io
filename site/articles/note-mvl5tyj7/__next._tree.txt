@@ -1,9 +1,8 @@
-:HL["/_next/static/chunks/13ss6yw_-xh-6.css","style"]
+:HL["/_next/static/chunks/40704ni36ox9e.css","style"]
 :HL["/art/logo.svg","image"]
-:HL["/art/hk-header.webp","image",{"fetchPriority":"auto"}]
-:HL["/art/hk-greenpath.webp","image",{"fetchPriority":"auto"}]
+:HL["/art/petty-knight-standing-v1.webp","image"]
 :HL["/media/e384ed5a66ecabdf2170e89efc03b39d9cc9da50d9c042e67a9aba41d47c27c6.webp","image"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"note-mvl5tyj7","s":[]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"articles","h":131168,"c":"$Q2"}]]
-0:{"b":"5XYnJqGK2totaFU6otJZv","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"HY99GFcCWvoSTYmJzGlnW","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
